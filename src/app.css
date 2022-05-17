@@ -39,9 +39,95 @@ button:hover {
 /* MenuBar */
 
 #Menu-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--standardBackgroundColor);
+}
 
+.menu-wrapper {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-choice:focus {
+  text-decoration: underline var(--activeColor);
+  color: var(--activeColor);
+}
+
+.menu-choice {
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  background-color: var(--standardBackgroundColor);
 }
 
 .menu-profile {
-  
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  padding: 15px;
 }
+
+/* Main Page */
+#MainPage {
+
+}
+
+/* Log Day */
+
+.calendar {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 30px 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.change-date {
+  border: none;
+  background-color: inherit;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.form-area {
+  background-color: var(--standardBackgroundColor);
+  margin: 0px 15% 10px 15%;
+  border-radius: 5px;
+}
+
+.form-area label {
+  font-size: 15px;
+  font-weight: 500;
+  display: inline-block;
+  padding: 10px 5px 5px 5px;
+}
+
+.form-area input {
+  margin: 0px 0px 10px 5px;
+  height: 15px;
+  padding: 5px;
+}
+
+.log-footer {
+  margin: 0px 15%;
+}
+
+.submitbtn {
+  color: var(--actionTextColor);
+  border: none;
+  border-radius: 5px;
+  background-color: var(--actionBackgroundColor);
+  padding: 5px 10px;
+}
+
+
+@media all and (max-width: 600px) {
+
+  /* Log Day */
+
+}
+
+
