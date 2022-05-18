@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+var date = new Date();
+
 function LogDay(){
     // change Date into mm/dd/yyyy format
     const dateFormat = (date) => {
@@ -11,7 +13,6 @@ function LogDay(){
 
     const minusDate = () => {
         date.setDate(date.getDate() - 1);
-        console.log(dateFormat(date));
         setDateShown(dateFormat(date));
     }
 
@@ -25,13 +26,8 @@ function LogDay(){
         setDateShown(dateFormat(date));
     }
     
-    var date = new Date();
     const [dateShown, setDateShown] = useState(dateFormat(date));
 
-    useEffect(() => {
-        console.log(date);
-        console.log(dateShown);
-    }, [dateShown])
     return (
         <div className="log-container">
             <div className="calendar">
@@ -41,14 +37,16 @@ function LogDay(){
             </div>
 
             <form className="log-form">
+
                 <div className="form-area">
                     <label>Question1</label><br/>
-                    <input></input>
+                    <input type="text"></input>
                 </div>
 
-                <div className="log-footer">
+                <div className="footer">
                     <button type="submit" className="submitbtn">Submit</button>
                 </div>
+                
             </form>
         </div>
     )
