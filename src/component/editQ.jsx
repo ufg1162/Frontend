@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import QuestionForm from "./questionForm";
+import { v4 as uuidv4 } from 'uuid';
 
 function EditQuestions() {
     const [qList, setQList] = useState([]);
 
+    // Add Question
     const addQ = () => {
         const question = {
+            id: '',
             text: '',
             type: '',
             answer: ''
         }
-        setQList([...qList, question]);
+        question.id = uuidv4();
+        setQList([question, ...qList]);
     }
-    
+
     return (
         <div className="edit-container">
             <div className="edit-header">
@@ -23,7 +27,7 @@ function EditQuestions() {
             <form className="edit-form">
 
                 {qList.map((question) => (
-                    <QuestionForm question={question} key="1"/>
+                    <QuestionForm question={question} key={question.id} qList={qList} setQList={setQList}/>
                 ))}
 
                 <div className="footer">

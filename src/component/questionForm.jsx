@@ -1,34 +1,66 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function QuestionForm({ question }) {
-    const [isMul, setIsMul] = useState(false);
+function QuestionForm({ question, qList, setQList }) {
 
-    const handleSelect = (e) => {
+    const [isMul, setIsMul] = useState('');
+    useEffect(() => {
+        if (question.type === "multiple choice") {
+            setIsMul(true);
+        }
+        else {
+            setIsMul(false);
+        }
+    }, [])
+
+    const findIndex = () => {
+        var x;
+        qList.map((q) => {
+            if (q.id === question.id) {
+                x = q;
+            }
+        });
+        var i = qList.indexOf(x);
+        return i;
+    }
+
+    // Delete Question
+    const deleteQ = (id) => {
+        const updated = qList.filter((quest) => quest.id !== id);
+        setQList(updated);
+    }   
+
+    // Handle input text change
+    const handleText = (e) => {
+        var i = findIndex();
+        const update = [...qList.slice(0, i), {...qList[i], text: e.target.value}, ...qList.slice(i + 1)];
+        setQList(update);
+    }
+
+    const handleType = (e) => {
         if (e.target.value === "multiple choice") {
             setIsMul(true);
         }
         else {
             setIsMul(false);
         }
-    }
-
-    const handleText = (e) => {
-        const update = {...question, text: e.target.value};
+        var i = findIndex();
+        const update = [...qList.slice(0, i), {...qList[i], type: e.target.value}, ...qList.slice(i + 1)];
+        setQList(update);
     }
 
 
     return (
         <div className="form-area">
-            <input type="text" className="question" onChange={handleText} defaultValue={question.text}></input><br/>
+            <input type="text" className="question" onChange={handleText} value={question.text}></input><br/>
 
-            <select onClick={handleSelect} className="question-type" defaultValue={question.type}>
+            <select onChange={handleType} className="question-type" value={question.type}>
                 <option value="number">number</option>
                 <option value="boolean">boolean</option>
                 <option value="text">text</option>
                 <option value="multiple choice">multiple choice</option>
-            </select>
+            </select>   
 
-            <span className="material-icons">delete_outline</span>
+            <span className="material-icons" onClick={() => deleteQ(question.id)}>delete_outline</span>
 
             {isMul && 
                 <div className="multiple-choice">
