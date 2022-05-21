@@ -1,36 +1,70 @@
 import './app.css';
-import { useState } from 'react';
-import MenuBar from './component/menuBar';
+import LoginPage from './component/LoginPage';
+import NewUser from './component/NewUser';
 import MainPage from './component/mainPage';
 
+
+import { useState, useLayoutEffect, useEffect, Fragment } from 'react';
+
 function App() {
-
-  ///////////////////////////////////////////////////////////////////////////////////////////
   
-  const [showLog, setShowLog] = useState(true);
-  const [showEdit, setShowEdit] = useState(false);
-  const [showData, setShowData] = useState(false);
+  const [LoginDisplay, setLoginDisplay] = useState(true);
+  const [NewuserDisplay, setNewuserDisplay] = useState(false);
+  const [EditprofileDisplay, setEditprofileDisplay] = useState(false);
+  const [showMainpage, setShowmainpage] = useState(false);
   
-  ///////////////////////////////////////////////////////////////////////////////////////////
 
+  
+  const handleSignup = e => {
+    e.preventDefault();
+    setLoginDisplay(false);
+    setShowmainpage(true);
+    setNewuserDisplay(false);
+  }
+
+  const handlelogin = e => {
+    e.preventDefault();
+    setLoginDisplay(false);
+    setNewuserDisplay(false);
+    setShowmainpage(true);
+  }
+
+  const handlelogout = e => {
+    setEditprofileDisplay(false);
+    setShowmainpage(false);
+    setLoginDisplay(true);
+  }
+  
+  
+  
+  
   return (
     <div className="App">
       
-      <MenuBar
-
-          setShowLog = {setShowLog}
-          setShowEdit = {setShowEdit}
-          setShowData = {setShowData}
-      />
-
-      <MainPage
+      {LoginDisplay && <LoginPage 
+        setNewuserDisplay = {setNewuserDisplay}
+        handlelogin = {handlelogin}
+      />}
       
-          showLog = {showLog}
-          showEdit = {showEdit}
-          showData = {showData}
+      <NewUser 
+        NewuserDisplay = {NewuserDisplay}
+        setNewuserDisplay = {setNewuserDisplay}
+        handleSignup = {handleSignup}
       />
-    </div>
-  );
-}
 
+      {showMainpage && <MainPage
+        handlelogout = {handlelogout}
+        EditprofileDisplay = {EditprofileDisplay}
+        setEditprofileDisplay = {setEditprofileDisplay}
+       
+      />}
+      
+
+
+    </div>
+    
+    );
+  }
+    
 export default App;
+    

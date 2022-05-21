@@ -16,6 +16,7 @@ body {
 }
 
 input:focus,
+
 select:focus,
 textarea:focus,
 button:focus  {
@@ -34,6 +35,20 @@ input[type=submit]:hover,
 input[type=button]:hover,
 button:hover {
   transform: scale(1.1);
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 93%;
+  padding: 15px;
+  margin: 5px 0 5px 0;
+  display: flexbox;
+  background: #fff;
+  border-style: solid;
+  border-width: thin;
+  border-color: darkgray;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Global Form */
@@ -64,7 +79,18 @@ button {
 
 /* MenuBar */
 
+.logo{
+  margin-top: 10px;
+}
 #Menu-container {
+
+ justify-content: space-between;
+ display: flex;
+ background-color: rgb(255, 253, 253);
+ height: 60px;
+}
+.menu-icons{
+  padding-top: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,6 +103,7 @@ button {
   justify-content: space-between;
 }
 
+
 .menu-choice {
   font-size: 15px;
   font-weight: 500;
@@ -88,7 +115,9 @@ button {
   height: 45px;
   width: 45px;
   border-radius: 50%;
+  margin-top: -10px;
   padding: 15px;
+  cursor: pointer;
 }
 
 /* Main Page */
@@ -125,6 +154,212 @@ button {
   border-radius: 5px;
 }
 
+/* ////////////////////// LoginPage ////////////////////////// */
+
+.loginwindow{
+  background-color: var(--alternativeBackgroundColor);
+  position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10
+}
+
+
+#login_h1{
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 10%;
+}
+#login_h3{
+  text-align:center;
+}
+.login_input{
+  justify-content: center;
+  top: 25%;
+  left: 35%;
+  border-radius: 5%;
+  margin-left: auto; 
+  margin-right: auto; 
+  
+  border-style: none;
+  border-width: thin; 
+  border-color: darkgray;
+  background-color: white; 
+
+  max-height: 410px;
+  max-width: 500px;
+
+}
+#login_button{
+  background-color: rgb(58, 99, 197);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 0.2cm;
+  border: none;
+  cursor: pointer;
+  height: 43px;
+  width: 100%;
+  margin-top: 25px;
+}
+hr{
+  margin: 25px 0 25px 0;
+}
+
+.login_container{
+  padding: 20px;
+}
+
+.dlt_btn{
+  border-style: none;
+  padding: 14px 20px;
+  background-color: rgb(26, 158, 26);
+  color: white;
+  border-radius: 0.2cm;
+  
+}
+#dlt_div{
+  text-align: center;
+}
+
+
+ /* ////////////////////// SignupPage ////////////////////////// */
+
+ #login_popup{
+  background-color: rgba(148, 146, 146, 0.9);
+  position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+
+}
+.newAccount_input{
+  border-radius: 5%;
+  margin-top: 16%;
+  margin-left: auto;
+  margin-right: auto; 
+  padding: 20px;
+  
+  border-style: double;
+  border-width: thin;
+  border-color: darkgray;
+  background-color: white;
+
+  max-height: 410px;
+  max-width: 500px;
+  
+}
+
+
+#newAccount_input2{
+  border: none;
+  display: flex;
+}
+
+#signup_top{
+  display: flex;
+  justify-content: space-between;
+}
+
+#x_button{
+  margin-top: 18px;
+}
+#signbtn_div{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.emailbox{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 5px 0;
+  display: inline-block;
+  background: #fff;
+  border-style: solid;
+  border-width: thin;
+  border-color: darkgray;
+}
+
+/* ////////////////////// EditprofilePage ////////////////////////// */
+
+#edit2 {
+  border-style: none;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.popup-button {
+  background-color:var(--activeColor);
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 0.2cm;
+  font-size: medium;
+}
+
+#file-upload{
+  display: none;
+}
+
+.clearfix {
+  display: flex;
+  justify-content: space-between;
+  margin: 18px;
+}
+
+.signupbtn {
+  padding: 14px 20px;
+  background-color: var(--actionBackgroundColor);
+  border-radius: 0.2cm;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  height: 43px;
+  width: 100px;
+
+}
+
+
+.editprofile_div{
+  background-color: rgb(255, 253, 253);
+  margin: 15px;
+  padding: 10px;
+  border-radius: 0.2cm;
+  
+}
+
+#edit_profile{
+  margin: 18px;
+  
+}
+
+.editprofile_input{
+  border-radius: 0.2cm;
+  width: 100%;
+  border: 2px solid rgba(42, 91, 195, 0.35);
+}
+
+.underline{
+  text-decoration: underline;
+  cursor: pointer;
+}
 .submitbtn {
   color: var(--actionTextColor);
   border: none;
@@ -185,10 +420,46 @@ button {
   padding: 5px 10px;
 }
 
-@media all and (max-width: 600px) {
 
-  /* Log Day */
+/************************************************************************************/
+
+/* These rules only apply if the window's max-width is 500px or less */
+@media all and (max-width: 600px) {
+ 
+  .login_input{
+    justify-content: center;
+    top: 25%;
+    left: 35%;
+    border-radius: 5%;
+    margin-left: auto; 
+    margin-right: auto; 
+    
+    border-style: none;
+    border-width: thin;
+    border-color: darkgray;
+    background-color: white;
+
+
+  }
+  .logo{
+    display: none;
+  }
+  .newAccount_input{
+    border-radius: 5%;
+    margin-top: 16%;
+    margin-left: auto;
+    margin-right: auto; 
+    padding: 20px;
+    
+    border-style: double;
+    border-width: thin;
+    border-color: darkgray;
+    background-color: white;
+  
+   
+    
+  }
+  
 
 }
-
-
+/************************************************************************************/

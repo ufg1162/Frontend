@@ -1,3 +1,6 @@
+
+import MenuBar from "./menuBar";
+import EditProfile from "./EditProfile";
 import { useState, useEffect } from "react";
 
 var date = new Date();
@@ -33,7 +36,7 @@ function LogDay(){
             <div className="calendar">
                 <button className="change-date" onClick={minusDate}>&lt;</button>
                 <span>{dateShown}</span>
-                <button className="change-date" onClick={plusDate}>&gt;</button>
+                <button className="change-date" id="" onClick={plusDate}>&gt;</button>
             </div>
 
             <form className="log-form">
@@ -49,7 +52,10 @@ function LogDay(){
                 
             </form>
         </div>
+        
     )
+
 }
 
-export default LogDay
+export default LogDay;
+   
