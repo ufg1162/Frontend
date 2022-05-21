@@ -37,9 +37,6 @@ button:hover {
   transform: scale(1.1);
 }
 
-input[type="password"]:hover {
-  /* background-color: var(--lightColor); */
-}
 input[type="text"],
 input[type="password"] {
   width: 93%;
@@ -54,10 +51,39 @@ input[type="password"] {
   margin-bottom: 10px;
 }
 
+/* Global Form */
+
+input[type=radio] {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+.form-area {
+  background-color: var(--standardBackgroundColor);
+  margin: 0px 15% 10px 15%;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.footer {
+  margin: 0px 15%;
+}
 
 /* MenuBar */
 
+.logo{
+  margin-top: 10px;
+}
 #Menu-container {
+
  justify-content: space-between;
  display: flex;
  background-color: rgb(255, 253, 253);
@@ -65,11 +91,67 @@ input[type="password"] {
 }
 .menu-icons{
   padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--standardBackgroundColor);
+}
 
+.menu-wrapper {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.menu-choice {
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  background-color: var(--standardBackgroundColor);
 }
 
 .menu-profile {
-  
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  margin-top: -10px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+/* Main Page */
+#MainPage {
+
+}
+
+/* Log Day */
+
+.calendar {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 30px 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.change-date {
+  border: none;
+  background-color: inherit;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.log-container label {
+  font-size: 15px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+.log-container input {
+  height: 20px;
+  border-radius: 5px;
 }
 
 /* ////////////////////// LoginPage ////////////////////////// */
@@ -278,12 +360,71 @@ hr{
   text-decoration: underline;
   cursor: pointer;
 }
+.submitbtn {
+  color: var(--actionTextColor);
+  border: none;
+  border-radius: 5px;
+  background-color: var(--actionBackgroundColor);
+  padding: 5px 10px;
+}
+
+/* Edit Questions */
+
+.edit-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 15%;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.edit-header .material-icons {
+  font-size: 25px;
+  font-weight: 500;
+  padding-top: 5px;
+}
+
+.question {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.question-type {
+  padding: 3px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.edit-form .material-icons {
+  float: right;
+}
+
+.multiple-choice {
+  margin-top: 10px;
+}
+
+.choice-input {
+  height: 20px;
+  border: none;
+  border-bottom: 2px solid var(--lightColor);
+}
+
+.savebtn {
+  color: var(--actionTextColor);
+  border: none;
+  border-radius: 5px;
+  background-color: var(--actionBackgroundColor);
+  padding: 5px 10px;
+}
 
 
 /************************************************************************************/
 
 /* These rules only apply if the window's max-width is 500px or less */
-@media all and (max-width: 500px) {
+@media all and (max-width: 600px) {
  
   .login_input{
     justify-content: center;
@@ -299,6 +440,9 @@ hr{
     background-color: white;
 
 
+  }
+  .logo{
+    display: none;
   }
   .newAccount_input{
     border-radius: 5%;

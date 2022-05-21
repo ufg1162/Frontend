@@ -1,36 +1,37 @@
 import './app.css';
-import MenuBar from './component/MenuBar';
 import LoginPage from './component/LoginPage';
 import NewUser from './component/NewUser';
-import EditProfile from './component/EditProfile';
-import LogDay from './component/LogDay';
+import MainPage from './component/mainPage';
+
 
 import { useState, useLayoutEffect, useEffect, Fragment } from 'react';
 
 function App() {
   
   const [LoginDisplay, setLoginDisplay] = useState(true);
-  const [LogdayDisplay, setLogdayDisplay] = useState(false);
   const [NewuserDisplay, setNewuserDisplay] = useState(false);
   const [EditprofileDisplay, setEditprofileDisplay] = useState(false);
+  const [showMainpage, setShowmainpage] = useState(false);
+  
+
   
   const handleSignup = e => {
     e.preventDefault();
     setLoginDisplay(false);
-    setLogdayDisplay(true);
+    setShowmainpage(true);
     setNewuserDisplay(false);
   }
 
   const handlelogin = e => {
     e.preventDefault();
     setLoginDisplay(false);
-    setLogdayDisplay(true);
     setNewuserDisplay(false);
+    setShowmainpage(true);
   }
 
   const handlelogout = e => {
     setEditprofileDisplay(false);
-    setLogdayDisplay(false);
+    setShowmainpage(false);
     setLoginDisplay(true);
   }
   
@@ -44,20 +45,26 @@ function App() {
         setNewuserDisplay = {setNewuserDisplay}
         handlelogin = {handlelogin}
       />}
-
-      {LogdayDisplay && <LogDay
-        setEditprofileDisplay = {setEditprofileDisplay}
-        EditprofileDisplay = {EditprofileDisplay}
-        handlelogout = {handlelogout}
-      />}
       
       <NewUser 
         NewuserDisplay = {NewuserDisplay}
         setNewuserDisplay = {setNewuserDisplay}
         handleSignup = {handleSignup}
       />
-    </div>
-  );
-}
 
+      {showMainpage && <MainPage
+        handlelogout = {handlelogout}
+        EditprofileDisplay = {EditprofileDisplay}
+        setEditprofileDisplay = {setEditprofileDisplay}
+       
+      />}
+      
+
+
+    </div>
+    
+    );
+  }
+    
 export default App;
+    
