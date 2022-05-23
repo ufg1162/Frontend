@@ -1,7 +1,7 @@
-import image from "../image.jpg";
+
 import {useEffect} from "react";
 
-function MenuBar({ setShowLog, setShowEdit, setShowData }) {
+function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay }) {
 
     // highlight and underline persists unless clicking other buttons from menu bar
     const clicked = (name) => {
@@ -23,6 +23,7 @@ function MenuBar({ setShowLog, setShowEdit, setShowData }) {
         setShowLog(true);
         setShowEdit(false); 
         setShowData(false); 
+        setEditprofileDisplay(false);  
         clicked("logDay");
     }
 
@@ -31,26 +32,37 @@ function MenuBar({ setShowLog, setShowEdit, setShowData }) {
         setShowLog(false);
         setShowEdit(true); 
         setShowData(false); 
+        setEditprofileDisplay(false);  
         clicked("editQuestion");
     }
 
     // 'View Data' clicked and shown
     const ViewShown = () => {
         setShowLog(false);
-        setShowEdit(false); 
+        setShowEdit(false);
+        setEditprofileDisplay(false);  
         setShowData(true); 
         clicked("viewData");
     }
 
+    // 'Edit Profile' clicked and shown
+    const EditProfileShown = () => {
+        setShowLog(false);
+        setShowEdit(false); 
+        setShowData(false);
+        setEditprofileDisplay(true); 
+        clicked("Edit profile");
+    }
+
     return (
         <div id="Menu-container">
-            <span style={{fontSize: '25px', paddingLeft: '5px'}}><b>Day Logger</b></span>
+            <span className="logo" style={{fontSize: '25px', paddingLeft: '5px'}}><b>Day Logger</b></span>
             <div className="menu-wrapper">
                 <button id="logDay" className="menu-choice" onClick={LogShown} style={{color: "#66bfbf", textDecoration: "underline"}}>Log Day</button>  
                 <button id="editQuestion" className="menu-choice" onClick={EditShown}>Edit Questions</button>
                 <button id="viewData" className="menu-choice" onClick={ViewShown}>View Data</button>
             </div>
-            <img className="menu-profile" src={image} alt="profile-img"></img>
+            <img className="menu-profile" src="http://res.cloudinary.com/natialemu47/image/upload/v1652196653/dnt17uj4nl9ywfq648v8.jpg" onClick={EditProfileShown} alt="profile-img"></img>
         </div>
     )
 }
