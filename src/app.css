@@ -342,6 +342,7 @@ hr{
 }
 
 .editprofile_input{
+  box-sizing: border-box;
   border-radius: 0.2cm;
   width: 100%;
   border: 2px solid rgba(42, 91, 195, 0.35);
