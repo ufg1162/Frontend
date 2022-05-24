@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-function EditProfile({handlelogout}) {
+function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay }) {
+
+    const handlelogout = e => {
+        axios.post('/api/logout')
+            .then(function (res) {
+                setEditprofileDisplay(false);
+                setShowmainpage(false);
+                setLoginDisplay(true);
+            })
+      }
     return(
         <div>
             <div id='edit_profile'>

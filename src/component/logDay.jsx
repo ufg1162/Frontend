@@ -1,5 +1,5 @@
 
-import MenuBar from "./menuBar";
+import MenuBar from "./menubar";
 import EditProfile from "./EditProfile";
 import { useState, useEffect } from "react";
 

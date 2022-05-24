@@ -2,7 +2,7 @@ import './app.css';
 import LoginPage from './component/LoginPage';
 import NewUser from './component/NewUser';
 import MainPage from './component/mainPage';
-
+import axios, { Axios } from 'axios';
 
 import { useState, useLayoutEffect, useEffect, Fragment } from 'react';
 
@@ -10,52 +10,41 @@ function App() {
   
   const [LoginDisplay, setLoginDisplay] = useState(true);
   const [NewuserDisplay, setNewuserDisplay] = useState(false);
-  const [EditprofileDisplay, setEditprofileDisplay] = useState(false);
   const [showMainpage, setShowmainpage] = useState(false);
-  
 
+  useEffect(() => {
+    axios.post('/api/auth')
+      .then(function(result) {
+        if (result.data == true) {
+          setLoginDisplay(false);
+          setShowmainpage(true);
+        }
+      })
+  }, [])
   
-  const handleSignup = e => {
-    e.preventDefault();
-    setLoginDisplay(false);
-    setShowmainpage(true);
-    setNewuserDisplay(false);
-  }
+  useEffect(() => {
+    console.log(NewuserDisplay)
+  }, [NewuserDisplay])
 
-  const handlelogin = e => {
-    e.preventDefault();
-    setLoginDisplay(false);
-    setNewuserDisplay(false);
-    setShowmainpage(true);
-  }
-
-  const handlelogout = e => {
-    setEditprofileDisplay(false);
-    setShowmainpage(false);
-    setLoginDisplay(true);
-  }
-  
-  
-  
-  
   return (
     <div className="App">
       
       {LoginDisplay && <LoginPage 
+        setLoginDisplay = {setLoginDisplay}
         setNewuserDisplay = {setNewuserDisplay}
-        handlelogin = {handlelogin}
+        setShowmainpage = {setShowmainpage}
       />}
       
-      <NewUser 
+      {NewuserDisplay && <NewUser 
+        setLoginDisplay = {setLoginDisplay}
         NewuserDisplay = {NewuserDisplay}
         setNewuserDisplay = {setNewuserDisplay}
-        handleSignup = {handleSignup}
-      />
+        setShowmainpage = {setShowmainpage}
+      />}
 
       {showMainpage && <MainPage
-        handlelogout = {handlelogout}
-        EditprofileDisplay = {EditprofileDisplay}
-        setEditprofileDisplay = {setEditprofileDisplay}
+        setShowmainpage = {setShowmainpage}
+        setLoginDisplay = {setLoginDisplay}
        
       />}
       

@@ -1,6 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import axios from 'axios';
 
-function LoginPage({setNewuserDisplay, handlelogin}) {
+function LoginPage({ setLoginDisplay, setNewuserDisplay, setShowmainpage }) {
+
+    const [errorMessage, setErrorMessage] = useState(false);
+    const [user, setUser] = useState({
+        email: "",
+        password: ""
+    })
+
+    const inputChange = (e) => {
+        setUser({...user, [e.target.name]: e.target.value})
+    }
+
+    const handlelogin = e => {
+        e.preventDefault();
+        axios.post('/api/login', user)
+            .then(function (res) {
+                setLoginDisplay(false);
+                setNewuserDisplay(false);
+                setShowmainpage(true);
+                setErrorMessage(false);
+            })
+            .catch(err => {
+                setErrorMessage(true);
+            })
+      }
+
+
     return(
         <div className='loginwindow'>
             <div>
@@ -13,12 +40,12 @@ function LoginPage({setNewuserDisplay, handlelogin}) {
                 <div className="login_container">
                     
                     <label htmlFor="email"><b>Email</b></label>
-                    <input type="text" name="email" required="" />  
+                    <input className="login-input" type="text" name="email" required="" onChange={inputChange}/>  
 
                     <label htmlFor='text'><b>Password</b></label>
-                    <input type="password" name="name" required=""  />              
+                    <input type="password" name="password" required="" onChange={inputChange}/>              
 
-                    {/* {errorMessage && <div style={{color: 'red', padding: "5px"}}>Error: Invalid email and/or password</div>} */}
+                    {errorMessage && <div style={{color: 'red', padding: "5px"}}>Error: Invalid email and/or password</div>}
 
                     <div>
                         <button type="submit" id='login_button' onClick={handlelogin}>Log In</button>

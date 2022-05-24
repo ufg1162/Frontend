@@ -3,10 +3,11 @@ import EditQuestions from "./editQ";
 import LogDay from "./logDay";
 import ViewData from "./viewD";
 import EditProfile from './EditProfile';
-import MenuBar from "./menuBar";
+import MenuBar from "./menubar";
 
-function MainPage({ setEditprofileDisplay, EditprofileDisplay, handlelogout }) {
+function MainPage({ setShowmainpage, setLoginDisplay }) {
 
+    const [EditprofileDisplay, setEditprofileDisplay] = useState(false);
     const [showLog, setShowLog] = useState(true);
     const [showEdit, setShowEdit] = useState(false);
     const [showData, setShowData] = useState(false);
@@ -23,14 +24,12 @@ function MainPage({ setEditprofileDisplay, EditprofileDisplay, handlelogout }) {
 
             {EditprofileDisplay && 
             <EditProfile
-                handlelogout = {handlelogout}
+                setShowmainpage = {setShowmainpage}
+                setLoginDisplay = {setLoginDisplay}
+                setEditprofileDisplay = {setEditprofileDisplay}
             />}
 
-            {showLog && <LogDay
-                setEditprofileDisplay = {setEditprofileDisplay}
-                EditprofileDisplay = {EditprofileDisplay}
-                handlelogout = {handlelogout}
-            />}
+            {showLog && <LogDay/>}
             {showEdit && <EditQuestions/>}
             {showData && <ViewData/>}
         </div>
