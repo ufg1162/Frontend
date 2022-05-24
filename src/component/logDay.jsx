@@ -1,4 +1,3 @@
-import EditProfile from "./EditProfile";
 import { useState, useEffect } from "react";
 
 var date = new Date();

@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import QuestionForm from "./questionForm";
 import { v4 as uuidv4 } from 'uuid';
+import axios from "axios";
 
 function EditQuestions() {
     const [qList, setQList] = useState([]);
+    useEffect(() => {
+        axios.get('/api/questions')
+            .then(function (res) {
+                setQList(res.data);
+            })
+    }, [])
 
     // Add Question
     const addQ = () => {
