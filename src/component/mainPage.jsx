@@ -3,7 +3,7 @@ import EditQuestions from "./editQ";
 import LogDay from "./logDay";
 import ViewData from "./viewD";
 import EditProfile from './EditProfile';
-import MenuBar from "./menuBar";
+import MenuBar from "./menubar";
 
 function MainPage({ setEditprofileDisplay, EditprofileDisplay, handlelogout }) {
 
