@@ -35,16 +35,17 @@ function LogDay(){
         let encoded = encodeURIComponent(dateShown);
         axios.get('/api/logs/' + encoded)
             .then(function (res) {
-                if (!res.data[0]) {
-                    var today = dateFormat(new Date());
-                    if (today === dateShown) {
-                        axios.get('/api/questions')
+                if (!res.data[0]) { // if no log within the date in the database
+                    var today = dateFormat(new Date());  // get today's date to compare with displayed date in Log Day page
+                    if (today === dateShown) {  // if they equal, get questions to check. Else don't show anything
+                        axios.get('/api/questions')  // get all the user's questions
                             .then(function (res) {
-                                const questions = res.data;
+                                const questions = res.data[0].questions;
                                 let update = {date: '', questions: ''};
                                 questions.map((result) => {
-                                    update = {...update, date: dateShown, questions: [...update.questions, {question: result.text, type: result.type, answer: null}]};
+                                     update = {...update, date: dateShown, questions: [...update.questions, {question: result.text, type: result.type, answer: ''}]};
                                 })
+                                console.log(update);
                                 setLog(update);
                             })
 
@@ -69,9 +70,7 @@ function LogDay(){
 
             <form className="log-form">
 
-                {/* {log.questions.map((res) => (
-                    <LogForm question={res} key={res.id}/>
-                ))} */}
+
 
                 <div className="form-area">
                     <label>Question1</label><br/>

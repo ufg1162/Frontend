@@ -10,7 +10,6 @@ function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay }
     useEffect(() => {
         axios.get('/api/curruser')
             .then(function (res) {
-                console.log(res.data[0]);
                 setUser(res.data[0]);
             })
     }, [])
@@ -59,7 +58,6 @@ function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay }
 
     const handleAddress = (e) => {
         const update = {...user, address: [{...user.address[0] , [e.target.name]: e.target.value}]}
-        console.log(update);
         setUser(update);
     }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function QuestionForm({ question, qList, setQList, setDel, del }) {
+function QuestionForm({ question, qList, setQList }) {
 
     const [isMul, setIsMul] = useState('');
     useEffect(() => {
@@ -25,11 +25,6 @@ function QuestionForm({ question, qList, setQList, setDel, del }) {
 
     // Delete Question
     const deleteQ = (id) => {
-        if (question._id !== undefined) {
-            const newDel = [...del, question._id];
-            console.log(newDel);
-            setDel(newDel);
-        }
         const updated = qList.filter((quest) => quest.id !== id);
         setQList(updated);
     }   
