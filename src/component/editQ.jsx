@@ -5,6 +5,8 @@ import axios from "axios";
 
 function EditQuestions() {
     const [qList, setQList] = useState([]);
+    const [del, setDel] = useState([]);
+
     useEffect(() => {
         axios.get('/api/questions')
             .then(function (res) {
@@ -17,11 +19,25 @@ function EditQuestions() {
         const question = {
             id: '',
             text: '',
-            type: '',
-            answer: ''
+            type: 'number',
+            choice: {one: '', two: '', three: ''},
         }
         question.id = uuidv4();
         setQList([question, ...qList]);
+    }
+
+    const handleSubmit = () => {
+        qList.map(result => {
+            if (result._id === undefined) {
+                axios.post('/api/questions', result);
+            }
+            else {
+                axios.put('/api/questions/' + result._id, result);
+            }
+        });
+        del.map(result => {
+            axios.delete('/api/questions/' + result);
+        })
     }
 
     return (
@@ -34,11 +50,11 @@ function EditQuestions() {
             <form className="edit-form">
 
                 {qList.map((question) => (
-                    <QuestionForm question={question} key={question.id} qList={qList} setQList={setQList}/>
+                    <QuestionForm question={question} key={question.id} qList={qList} setQList={setQList} setDel={setDel} del={del}/>
                 ))}
 
                 <div className="footer">
-                    <button type="submit" className="savebtn">Save</button>
+                    <button type="submit" className="savebtn" onClick={handleSubmit}>Save</button>
                 </div>
 
             </form>

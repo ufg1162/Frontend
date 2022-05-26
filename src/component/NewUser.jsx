@@ -9,7 +9,8 @@ function NewUser({setLoginDisplay, setNewuserDisplay, setShowmainpage }) {
         email: "",
         password: "",
         image: "",
-        address: ""
+        address: "",
+        questions: ""
     })
 
     const inputChange = (e) => {

@@ -103,6 +103,7 @@ button {
   width: 30%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 
@@ -111,6 +112,10 @@ button {
   font-weight: 500;
   border: none;
   background-color: var(--standardBackgroundColor);
+}
+
+.menu-choice:hover {
+  cursor: pointer;
 }
 
 .menu-profile {
@@ -275,6 +280,14 @@ hr{
 }
 
 /* ////////////////////// EditprofilePage ////////////////////////// */
+
+.profile-container {
+  margin: 30px 15%;
+}
+
+.profile-container img:hover {
+  cursor: pointer;
+}
 
 #edit2 {
   border-style: none;

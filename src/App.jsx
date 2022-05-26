@@ -8,6 +8,7 @@ import { useState, useLayoutEffect, useEffect, Fragment } from 'react';
 
 function App() {
   
+  const [user, setUser] = useState({});
   const [LoginDisplay, setLoginDisplay] = useState(true);
   const [NewuserDisplay, setNewuserDisplay] = useState(false);
   const [showMainpage, setShowmainpage] = useState(false);
@@ -15,16 +16,12 @@ function App() {
   useEffect(() => {
     axios.post('/api/auth')
       .then(function(result) {
-        if (result.data == true) {
+        if (result.data === true) {
           setLoginDisplay(false);
           setShowmainpage(true);
         }
-      })
+      });
   }, [])
-  
-  useEffect(() => {
-    console.log(NewuserDisplay)
-  }, [NewuserDisplay])
 
   return (
     <div className="App">
