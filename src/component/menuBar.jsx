@@ -1,7 +1,7 @@
 import image from "../image.jpg";
 import {useEffect} from "react";
 
-function MenuBar({ setShowLog, setShowEdit, setShowData }) {
+function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay }) {
 
     // highlight and underline persists unless clicking other buttons from menu bar
     const clicked = (name) => {
