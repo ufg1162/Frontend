@@ -161,6 +161,16 @@ button {
   border-radius: 5px;
 }
 
+.boolean-input {
+  display: flex;
+  align-items: center;
+}
+
+.multiple-input {
+  display: flex;
+  align-items: center;
+}
+
 /* ////////////////////// LoginPage ////////////////////////// */
 
 .loginwindow{
