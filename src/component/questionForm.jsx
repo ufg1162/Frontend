@@ -48,6 +48,11 @@ function QuestionForm({ question, qList, setQList }) {
         setQList(update);
     }
 
+    const handleChoice = (e) => {
+        var i = findIndex();
+        const update = [...qList.slice(0, i), {...qList[i], choice: {...qList[i].choice, [e.target.name]: e.target.value}}, ...qList.slice(i + 1)];
+        setQList(update);
+    }
 
     return (
         <div className="form-area">
@@ -64,14 +69,14 @@ function QuestionForm({ question, qList, setQList }) {
 
             {isMul && 
                 <div className="multiple-choice">
-                    <input type="radio" value="one" disabled={true}/>
-                    <input type="text" className="choice-input"/>
+                    <input type="radio" disabled={true}/>
+                    <input type="text" name="one" className="choice-input" onChange={handleChoice} value={question.choice.one}/>
                     <br/>
-                    <input type="radio" value="two" disabled={true}/>
-                    <input type="text" className="choice-input"/>
+                    <input type="radio" disabled={true}/>
+                    <input type="text" name="two" className="choice-input" onChange={handleChoice} value={question.choice.two}/>
                     <br/>
-                    <input type="radio" value="three" disabled={true}/>
-                    <input type="text" className="choice-input"/>
+                    <input type="radio" disabled={true}/>
+                    <input type="text" name="three" className="choice-input" onChange={handleChoice} value={question.choice.three}/>
                 </div>
             }
         </div>

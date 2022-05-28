@@ -1,4 +1,4 @@
-import image from "../image.jpg";
+
 import {useEffect} from "react";
 
 function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay }) {
@@ -46,7 +46,7 @@ function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay }
     }
 
     // 'Edit Profile' clicked and shown
-    const EditProfileShown = () => { 
+    const EditProfileShown = () => {
         setShowLog(false);
         setShowEdit(false); 
         setShowData(false);
@@ -58,9 +58,9 @@ function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay }
         <div id="Menu-container">
             <span className="logo" style={{fontSize: '25px', paddingLeft: '5px'}}><b>Day Logger</b></span>
             <div className="menu-wrapper">
-                <button id="logDay" className="menu-choice" onClick={LogShown} style={{color: "#66bfbf", textDecoration: "underline"}}>Log Day</button>  
-                <button id="editQuestion" className="menu-choice" onClick={EditShown}>Edit Questions</button>
-                <button id="viewData" className="menu-choice" onClick={ViewShown}>View Data</button>
+                <span id="logDay" className="menu-choice" onClick={LogShown} style={{color: "#66bfbf", textDecoration: "underline"}}>Log Day</span>  
+                <span id="editQuestion" className="menu-choice" onClick={EditShown}>Edit Questions</span>
+                <span id="viewData" className="menu-choice" onClick={ViewShown}>View Data</span>
             </div>
             <img className="menu-profile" src="http://res.cloudinary.com/natialemu47/image/upload/v1652196653/dnt17uj4nl9ywfq648v8.jpg" onClick={EditProfileShown} alt="profile-img"></img>
         </div>

@@ -37,7 +37,9 @@ button:hover {
   transform: scale(1.1);
 }
 
-input[type="text"],
+.login-input,
+.signup-input,
+.editprofile_input,
 input[type="password"] {
   width: 93%;
   padding: 15px;
@@ -101,6 +103,7 @@ button {
   width: 30%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 
@@ -109,6 +112,10 @@ button {
   font-weight: 500;
   border: none;
   background-color: var(--standardBackgroundColor);
+}
+
+.menu-choice:hover {
+  cursor: pointer;
 }
 
 .menu-profile {
@@ -272,18 +279,15 @@ hr{
   margin-top: 10px;
 }
 
-.emailbox{
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 5px 0;
-  display: inline-block;
-  background: #fff;
-  border-style: solid;
-  border-width: thin;
-  border-color: darkgray;
+/* ////////////////////// EditprofilePage ////////////////////////// */
+
+.profile-container {
+  margin: 30px 15%;
 }
 
-/* ////////////////////// EditprofilePage ////////////////////////// */
+.profile-container img:hover {
+  cursor: pointer;
+}
 
 #edit2 {
   border-style: none;
@@ -351,6 +355,7 @@ hr{
 }
 
 .editprofile_input{
+  box-sizing: border-box;
   border-radius: 0.2cm;
   width: 100%;
   border: 2px solid rgba(42, 91, 195, 0.35);
