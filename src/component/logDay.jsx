@@ -65,19 +65,23 @@ function LogDay(){
                     if (today === dateShown) {  // if they equal, get questions to check. Else don't show anything
                         axios.get('/api/questions')  // get all the user's questions
                             .then(function (res) {
-                                const questions = res.data[0].questions;
-                                let update = {date: '', questions: ''};
-                                questions.map((result) => {
-                                     update = {...update, date: dateShown, questions: 
-                                        [...update.questions, {id: result.id, question: result.text, type: result.type, choice: result.choice, answer: ''}]};
-                                })
-                                setLog(update);
+                                if (res.data.length === 0) {
+                                    setLog(null);
+                                }
+                                else {
+                                    const questions = res.data[0].questions;
+                                    let update = {date: '', questions: ''};
+                                    questions.map((result) => {
+                                         update = {...update, date: dateShown, questions: 
+                                            [...update.questions, {id: result.id, question: result.text, type: result.type, choice: result.choice, answer: ''}]};
+                                    })
+                                    setLog(update);
+                                }
                             })
                     }
                     setLog(null);
                 }
                 else {
-                    console.log(res.data[0]);
                     setLog(res.data[0]);
                 }
             });
@@ -120,10 +124,10 @@ function LogDay(){
                                 <div key={res.id} className="form-area">
                                     <label>{res.question}</label><br/>
                                     <div className="boolean-input">
-                                        <input type="radio" name="boolean" value="True" checked={res.answer === "True" ? true : false} onChange={(e) => handleChange(e, res.id)}/>
+                                        <input type="radio" name={"boolean" + res.id} value="True" checked={res.answer === "True" ? true : false} onChange={(e) => handleChange(e, res.id)}/>
                                         <span style={{marginRight: "5%"}}>True</span>
 
-                                        <input type="radio" name="boolean" value="False" checked={res.answer === "False" ? true : false} onChange={(e) => handleChange(e, res.id)}/>
+                                        <input type="radio" name={"boolean" + res.id} value="False" checked={res.answer === "False" ? true : false} onChange={(e) => handleChange(e, res.id)}/>
                                         <span>False</span>
                                     </div>
                                 </div>
@@ -144,19 +148,19 @@ function LogDay(){
                                 <div key={res.id} className="form-area">
                                     <label>{res.question}</label><br/>
                                     <div className="multiple-input">
-                                        <input type="radio" name="multiple" value={res.choice.one} checked={res.answer === res.choice.one ? true : false}
+                                        <input type="radio" name={"multiple" + res.id} value={res.choice.one} checked={res.answer === res.choice.one ? true : false}
                                         onChange={(e) => handleChange(e, res.id)}/>
                                         <span>{res.choice.one}</span><br/>
                                     </div>
 
                                     <div className="multiple-input">
-                                        <input type="radio" name="multiple" value={res.choice.two} checked={res.answer === res.choice.two ? true : false}
+                                        <input type="radio" name={"multiple" + res.id} value={res.choice.two} checked={res.answer === res.choice.two ? true : false}
                                         onChange={(e) => handleChange(e, res.id)}/>
                                         <span>{res.choice.two}</span><br/>
                                     </div>
 
                                     <div className="multiple-input">
-                                        <input type="radio" name="multiple" value={res.choice.three} checked={res.answer === res.choice.three ? true : false}
+                                        <input type="radio" name={"multiple" + res.id} value={res.choice.three} checked={res.answer === res.choice.three ? true : false}
                                         onChange={(e) => handleChange(e, res.id)}/>
                                         <span>{res.choice.three}</span><br/>
                                     </div>
