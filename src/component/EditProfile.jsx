@@ -2,10 +2,10 @@ import React, { Component, useEffect, useState } from 'react';
 import { uploadImageToCloudinaryAPIMethod } from "../api/client"
 import axios from 'axios';
 
-function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay }) {
+function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, user, setUser }) {
 
     const defaultImage = "http://res.cloudinary.com/natialemu47/image/upload/v1652196653/dnt17uj4nl9ywfq648v8.jpg";
-    const [user, setUser] = useState({name: '', email: '', address: [{one: '', two: ''}]});
+    //const [user, setUser] = useState({name: '', email: '', address: [{one: '', two: ''}]});
 
     useEffect(() => {
         axios.get('/api/curruser')

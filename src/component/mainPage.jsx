@@ -11,6 +11,7 @@ function MainPage({ setShowmainpage, setLoginDisplay }) {
     const [showLog, setShowLog] = useState(true);
     const [showEdit, setShowEdit] = useState(false);
     const [showData, setShowData] = useState(false);
+    const [user, setUser] = useState({name: '', email: '', address: [{one: '', two: ''}]});
     
     return (
         <div id="MainPage">
@@ -20,6 +21,7 @@ function MainPage({ setShowmainpage, setLoginDisplay }) {
                 setShowEdit = {setShowEdit}
                 setShowData = {setShowData}
                 setEditprofileDisplay = {setEditprofileDisplay}
+                user = {user}
             />
 
             {EditprofileDisplay && 
@@ -27,6 +29,8 @@ function MainPage({ setShowmainpage, setLoginDisplay }) {
                 setShowmainpage = {setShowmainpage}
                 setLoginDisplay = {setLoginDisplay}
                 setEditprofileDisplay = {setEditprofileDisplay}
+                user = {user}
+                setUser = {setUser}
             />}
 
             {showLog && <LogDay/>}
