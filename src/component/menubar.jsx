@@ -1,7 +1,7 @@
 
 import {useEffect} from "react";
 
-function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, user }) {
+function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, user, setShowAdmin, admin  }) {
 
     // highlight and underline persists unless clicking other buttons from menu bar
     const clicked = (name) => {
@@ -23,16 +23,18 @@ function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, 
         setShowLog(true);
         setShowEdit(false); 
         setShowData(false); 
+        setShowAdmin(false);
         setEditprofileDisplay(false);  
         clicked("logDay");
     }
 
     // 'Edit Questions' clicked and shown
     const EditShown = () => {
-        setShowLog(false);
-        setShowEdit(true); 
-        setShowData(false); 
-        setEditprofileDisplay(false);  
+        setShowLog(false); 
+        setShowData(false);
+        setShowAdmin(false);  
+        setEditprofileDisplay(false);
+        setShowEdit(true);  
         clicked("editQuestion");
     }
 
@@ -42,6 +44,7 @@ function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, 
         setShowEdit(false);
         setEditprofileDisplay(false);  
         setShowData(true); 
+        setShowAdmin(false); 
         clicked("viewData");
     }
 
@@ -50,8 +53,17 @@ function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, 
         setShowLog(false);
         setShowEdit(false); 
         setShowData(false);
+        setShowAdmin(false); 
         setEditprofileDisplay(true); 
         clicked("Edit profile");
+    }
+    const ViewAdmin = () => {
+        setShowLog(false);
+        setShowEdit(false); 
+        setShowData(false);
+        setEditprofileDisplay(false);
+        setShowAdmin(true); 
+        clicked("AdminPage");
     }
 
     return (
@@ -61,6 +73,8 @@ function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, 
                 <span id="logDay" className="menu-choice" onClick={LogShown} style={{color: "#66bfbf", textDecoration: "underline"}}>Log Day</span>  
                 <span id="editQuestion" className="menu-choice" onClick={EditShown}>Edit Questions</span>
                 <span id="viewData" className="menu-choice" onClick={ViewShown}>View Data</span>
+                {admin === true && <span id="AdminPage" className="menu-choice" onClick={ViewAdmin}>Admin Page</span>}
+
             </div>
             <img className="menu-profile" src={user.image || "http://res.cloudinary.com/natialemu47/image/upload/v1652196653/dnt17uj4nl9ywfq648v8.jpg"} onClick={EditProfileShown} alt="profile-img"></img>
         </div>

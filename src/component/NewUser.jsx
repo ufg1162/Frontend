@@ -6,6 +6,7 @@ function NewUser({setLoginDisplay, setNewuserDisplay, setShowmainpage }) {
     const [errorMessage, setErrorMessage] = useState(false);
     const [user, setUser] = useState({
         name: "",
+        isadmin: false,
         email: "",
         password: "",
         image: "",
@@ -24,6 +25,7 @@ function NewUser({setLoginDisplay, setNewuserDisplay, setShowmainpage }) {
                 setLoginDisplay(false);
                 setShowmainpage(true);
                 setNewuserDisplay(false);
+                console.log(user);
             })
             .catch(err => {
                 setErrorMessage(true);

@@ -12,6 +12,8 @@ function App() {
   const [LoginDisplay, setLoginDisplay] = useState(true);
   const [NewuserDisplay, setNewuserDisplay] = useState(false);
   const [showMainpage, setShowmainpage] = useState(false);
+  const [admin, setAdmin] = useState(false);
+  const [allusers, setAllUsers] = useState([])
 
   useEffect(() => {
     axios.post('/api/auth')
@@ -23,6 +25,12 @@ function App() {
       });
   }, [])
 
+
+
+
+ 
+
+
   return (
     <div className="App">
       
@@ -30,6 +38,9 @@ function App() {
         setLoginDisplay = {setLoginDisplay}
         setNewuserDisplay = {setNewuserDisplay}
         setShowmainpage = {setShowmainpage}
+        setAdmin = {setAdmin}
+        setAllUsers = {setAllUsers}
+      
       />}
       
       {NewuserDisplay && <NewUser 
@@ -42,6 +53,10 @@ function App() {
       {showMainpage && <MainPage
         setShowmainpage = {setShowmainpage}
         setLoginDisplay = {setLoginDisplay}
+        admin = {admin}
+        setAdmin = {setAdmin}
+        allusers = {allusers}
+        setAllUsers = {setAllUsers}
        
       />}
       

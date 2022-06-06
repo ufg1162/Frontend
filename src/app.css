@@ -75,6 +75,14 @@ button {
   border-radius: 5px;
 }
 
+.view_form {
+  background-color: var(--standardBackgroundColor);
+  margin: 0px 15% 10px 15%;
+  padding: 15px;
+  border-radius: 5px;
+  justify-content: space-between;
+  display: flex;
+}
 .footer {
   margin: 0px 15%;
 }
@@ -433,6 +441,9 @@ hr{
   border-radius: 5px;
   background-color: var(--actionBackgroundColor);
   padding: 5px 10px;
+}
+#top_form{
+  justify-content: space-between;
 }
 
 

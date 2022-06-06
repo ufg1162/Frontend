@@ -3,7 +3,7 @@ import axios from 'axios';
 
 var date = new Date();
 
-function LogDay(){
+function ViewbyDate(){
     // change Date into mm/dd/yyyy format
     const dateFormat = (date) => {
         let day = date.getDate();
@@ -30,36 +30,6 @@ function LogDay(){
     const [log, setLog] = useState(null);
     const [dateShown, setDateShown] = useState(dateFormat(date));
 
-    const findIndex = (id) => {
-        var x;
-        log.questions.map((res) => {
-            if (res.id === id) {
-                x = res;
-            }
-        });
-        var i = log.questions.indexOf(x);
-        return i;
-    }
-
-    const handleChange = (e, id) => {
-        var i = findIndex(id);
-        const update = {...log, questions: [...log.questions.slice(0, i), {...log.questions[i], date_inside: dateShown, answer: e.target.value}, ...log.questions.slice(i + 1)]};
-        setLog(update);
-       
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (log._id === undefined) {
-            axios.post('/api/logs', log);
-
-        }
-        else {
-
-            axios.put('/api/logs/' + log._id, log);
-            
-        }
-    }
 
     useEffect(() => {
         let encoded = encodeURIComponent(dateShown);
@@ -119,7 +89,7 @@ function LogDay(){
                             return (
                                 <div key={res.id} className="form-area">
                                     <label>{res.question}</label><br/>
-                                    <input type="number" value={res.answer || ''} onChange={(e) => handleChange(e, res.id)}/>
+                                    <input readOnly type="number" value={res.answer || ''}/>
                                 </div>
                             )
                         }
@@ -129,10 +99,10 @@ function LogDay(){
                                 <div key={res.id} className="form-area">
                                     <label>{res.question}</label><br/>
                                     <div className="boolean-input">
-                                        <input type="radio" name={"boolean" + res.id} value="True" checked={res.answer === "True" ? true : false} onChange={(e) => handleChange(e, res.id)}/>
+                                        <input readOnly type="radio" name={"boolean" + res.id} value="True" checked={res.answer === "True" ? true : false}/>
                                         <span style={{marginRight: "5%"}}>True</span>
 
-                                        <input type="radio" name={"boolean" + res.id} value="False" checked={res.answer === "False" ? true : false} onChange={(e) => handleChange(e, res.id)}/>
+                                        <input readOnly type="radio" name={"boolean" + res.id} value="False" checked={res.answer === "False" ? true : false}/>
                                         <span>False</span>
                                     </div>
                                 </div>
@@ -143,7 +113,7 @@ function LogDay(){
                             return (
                                 <div key={res.id} className="form-area">
                                     <label>{res.question}</label><br/>
-                                    <input type="text" value={res.answer} onChange={(e) => handleChange(e, res.id)}/>
+                                    <input readOnly type="text" value={res.answer}/>
                                 </div>
                             )
                         }
@@ -153,20 +123,17 @@ function LogDay(){
                                 <div key={res.id} className="form-area">
                                     <label>{res.question}</label><br/>
                                     <div className="multiple-input">
-                                        <input type="radio" name={"multiple" + res.id} value={res.choice.one} checked={res.answer === res.choice.one ? true : false}
-                                        onChange={(e) => handleChange(e, res.id)}/>
+                                        <input readOnly type="radio" name={"multiple" + res.id} value={res.choice.one} checked={res.answer === res.choice.one ? true : false}/>
                                         <span>{res.choice.one}</span><br/>
                                     </div>
 
                                     <div className="multiple-input">
-                                        <input type="radio" name={"multiple" + res.id} value={res.choice.two} checked={res.answer === res.choice.two ? true : false}
-                                        onChange={(e) => handleChange(e, res.id)}/>
+                                        <input readOnly type="radio" name={"multiple" + res.id} value={res.choice.two} checked={res.answer === res.choice.two ? true : false}/>
                                         <span>{res.choice.two}</span><br/>
                                     </div>
 
                                     <div className="multiple-input">
-                                        <input type="radio" name={"multiple" + res.id} value={res.choice.three} checked={res.answer === res.choice.three ? true : false}
-                                        onChange={(e) => handleChange(e, res.id)}/>
+                                        <input readOnly type="radio" name={"multiple" + res.id} value={res.choice.three} checked={res.answer === res.choice.three ? true : false}/>
                                         <span>{res.choice.three}</span><br/>
                                     </div>
                                 </div>
@@ -174,9 +141,6 @@ function LogDay(){
                         }
                     })}
 
-                    <div className="footer">
-                        <button type="submit" className="submitbtn" onClick={handleSubmit}>Submit</button>
-                    </div>
                     
                 </form>
             </div>
@@ -186,5 +150,5 @@ function LogDay(){
     }
 }
 
-export default LogDay;
+export default ViewbyDate;
    
