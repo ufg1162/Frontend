@@ -48,8 +48,7 @@ function LogDay(){
        
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         if (log._id === undefined) {
             axios.post('/api/logs', log);
 

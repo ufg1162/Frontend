@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import axios from 'axios';
+import UserInfo from './userInfo';
 
 function Admin({allusers, setAllUsers}) {
     
@@ -10,23 +11,20 @@ function Admin({allusers, setAllUsers}) {
         setAllUsers(allusers.filter((user) => user._id !== id ));
        
     }
+    useEffect(() => {
+        axios.get('/api/users')
+            .then(res => setAllUsers(res.data));
+    }, [])
 
     return(
         <>
-            <div className='view_form'>
+            <div className='form-area' style={{marginTop: "3%"}}>
 
                 <h3>Total users ------ {allusers.length} user(s) </h3>
                         
             </div>
             {allusers.map((user) => (
-               <div className='view_form'>
-                   <h4>{user.name}</h4>
-                   <h6>{user.isadmin ? "(Admin)" : "user"}</h6>
-                   <h4>{user.email}</h4>
-                   <h4></h4>
-                    
-                   <span className="material-icons" onClick={() => handle_delete(user._id)}>delete_outline</span>
-               </div> 
+                <UserInfo user={user} key={user._id} handle_delete={handle_delete}/>
             ))}
         
         </>

@@ -58,13 +58,13 @@ function NewUser({setLoginDisplay, setNewuserDisplay, setShowmainpage }) {
                             <div id='x_button' onClick={() => setNewuserDisplay(false)}> X </div>
                         </div>
                         
-                        <label htmlFor="text"><b>Name</b></label>
+                        <label htmlFor="text"><b>Name</b></label><br/>
                         <input className="signup-input" type="text" name="name" required="" onChange={inputChange}/>
                         
-                        <label htmlFor="email"><b>Email</b></label>
+                        <label htmlFor="email"><b>Email</b></label><br/>
                         <input className="signup-input"  type="text" name="email" required="" onChange={inputChange}/>
 
-                        <label htmlFor="text"><b>Password</b></label>
+                        <label htmlFor="text"><b>Password</b></label><br/>
                         <input className="signup-input" type="password" name="password" required="" onChange={inputChange}/>
                     
                         {errorMessage && <div style={{color: 'red', padding: "5px"}}>Error: Invalid email and/or password</div>}

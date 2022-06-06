@@ -13,7 +13,8 @@ function App() {
   const [NewuserDisplay, setNewuserDisplay] = useState(false);
   const [showMainpage, setShowmainpage] = useState(false);
   const [admin, setAdmin] = useState(false);
-  const [allusers, setAllUsers] = useState([])
+  const [allusers, setAllUsers] = useState([]);
+  const [showAdmin, setShowAdmin] = useState(false);
 
   useEffect(() => {
     axios.post('/api/auth')
@@ -21,6 +22,12 @@ function App() {
         if (result.data === true) {
           setLoginDisplay(false);
           setShowmainpage(true);
+          axios.get('/api/curruser')
+            .then(function(result) {
+              if (result.data[0].isadmin === true) {
+                setAdmin(true);
+              }
+            })
         }
       });
   }, [])
@@ -57,7 +64,8 @@ function App() {
         setAdmin = {setAdmin}
         allusers = {allusers}
         setAllUsers = {setAllUsers}
-       
+        showAdmin = {showAdmin}
+        setShowAdmin = {setShowAdmin}
       />}
       
 

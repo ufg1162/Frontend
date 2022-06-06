@@ -77,10 +77,10 @@ function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, 
     return(
         <div className='profile-container'>
             <div id='edit_profile'>
-                <h2>Edit Profile</h2>
+                <span>Edit Profile</span>
             </div>
             
-            <div className='editprofile_div'>
+            <div className='form-area'>
                 <h3>Profile photo</h3>
                 <div id="edit2">
                     <label htmlFor='file-upload' className='custom-file-upload'><img className="profile-image" src={user.image || defaultImage} alt="Profile-image" /></label><input id="file-upload" type="file" onChange={handleImageSelected}></input>
@@ -90,16 +90,16 @@ function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, 
                 </div>
             </div>
                 
-            <div className='editprofile_div'>
+            <div className='form-area'>
                 <label htmlFor="text"><h4>Name</h4></label>
                 <input type="text" className='editprofile_input' value={user.name} name="name" onChange={handleChange}/> 
 
             </div>
-            <div className='editprofile_div'>
+            <div className='form-area'>
                 <label htmlFor="email"><h4>Email</h4></label>
                 <input type="text" className='editprofile_input' value={user.email} name="email" onChange={handleChange}/> 
             </div>
-            <div className='editprofile_div'>
+            <div className='form-area'>
                 <label htmlFor="text"><h4>Address</h4></label>
                 <input type="text" className='editprofile_input' value={user.address[0] === undefined ? '': user.address[0].one || ''} name="one" onChange={handleAddress}/> 
                 <input type="text" className='editprofile_input' value={user.address[0] === undefined ? '': user.address[0].two || ''} name="two" onChange={handleAddress}/> 

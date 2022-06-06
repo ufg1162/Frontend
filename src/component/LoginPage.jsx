@@ -56,7 +56,7 @@ function LoginPage({ setLoginDisplay, setNewuserDisplay, setShowmainpage, setAdm
                     <input className="login-input" type="text" name="email" required="" onChange={inputChange}/>  
 
                     <label htmlFor='text'><b>Password</b></label>
-                    <input type="password" name="password" required="" onChange={inputChange}/>              
+                    <input className="login-input" type="password" name="password" required="" onChange={inputChange}/>              
 
                     {errorMessage && <div style={{color: 'red', padding: "5px"}}>Error: Invalid email and/or password</div>}
 
