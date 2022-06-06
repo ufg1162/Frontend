@@ -89,6 +89,14 @@ button {
 .footer {
   margin: 0px 10%;
 }
+.view_data_form {
+  background-color: var(--standardBackgroundColor);
+  margin: 0px 15% 10px 15%;
+  padding: 15px;
+  border-radius: 5px;
+ 
+
+}
 
 /* MenuBar */
 

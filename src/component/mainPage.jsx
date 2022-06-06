@@ -6,7 +6,7 @@ import EditProfile from './EditProfile';
 import MenuBar from "./menubar";
 import Admin from "./admin";
 
-function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers, setAllUsers }) {
+function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers, setAllUsers, userImage }) {
 
     const [EditprofileDisplay, setEditprofileDisplay] = useState(false);
     const [showLog, setShowLog] = useState(true);
@@ -28,6 +28,7 @@ function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers,
                 setShowAdmin = {setShowAdmin}
                 user = {user}
                 admin = {admin}
+                userImage = {userImage}
                 
             />
 
@@ -38,6 +39,7 @@ function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers,
                 setEditprofileDisplay = {setEditprofileDisplay}
                 user = {user}
                 setUser = {setUser}
+                userImage = {userImage}
             />}
 
             {showLog && <LogDay/>}

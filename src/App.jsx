@@ -15,6 +15,7 @@ function App() {
   const [admin, setAdmin] = useState(false);
   const [allusers, setAllUsers] = useState([]);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [userImage, setUserImage] = useState("http://res.cloudinary.com/natialemu47/image/upload/v1652196653/dnt17uj4nl9ywfq648v8.jpg");
 
   useEffect(() => {
     axios.post('/api/auth')
@@ -47,6 +48,7 @@ function App() {
         setShowmainpage = {setShowmainpage}
         setAdmin = {setAdmin}
         setAllUsers = {setAllUsers}
+        setUserImage = {setUserImage}
       
       />}
       
@@ -66,6 +68,7 @@ function App() {
         setAllUsers = {setAllUsers}
         showAdmin = {showAdmin}
         setShowAdmin = {setShowAdmin}
+        userImage = {userImage}
       />}
       
 

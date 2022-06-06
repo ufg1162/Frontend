@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import { uploadImageToCloudinaryAPIMethod } from "../api/client"
 import axios from 'axios';
 
-function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, user, setUser }) {
+function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, user, setUser, userImage }) {
 
     const defaultImage = "http://res.cloudinary.com/natialemu47/image/upload/v1652196653/dnt17uj4nl9ywfq648v8.jpg";
     //const [user, setUser] = useState({name: '', email: '', address: [{one: '', two: ''}]});
@@ -83,7 +83,7 @@ function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, 
             <div className='form-area'>
                 <h3>Profile photo</h3>
                 <div id="edit2">
-                    <label htmlFor='file-upload' className='custom-file-upload'><img className="profile-image" src={user.image || defaultImage} alt="Profile-image" /></label><input id="file-upload" type="file" onChange={handleImageSelected}></input>
+                    <label htmlFor='file-upload' className='custom-file-upload'><img className="profile-image" src={userImage|| user.image || defaultImage} alt="Profile-image" /></label><input id="file-upload" type="file" onChange={handleImageSelected}></input>
                     
                     <span><button className="popup-button"><label htmlFor="file-upload" className="custom-file-upload">Choose new image </label><input id="file-upload" type="file" onChange={handleImageSelected}/></button></span>
                     <span><div className='underline' onClick={handleDeleteImage}>Remove image </div></span>
