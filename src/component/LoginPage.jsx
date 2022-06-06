@@ -1,12 +1,13 @@
 import React, { Component, useState } from 'react';
 import axios from 'axios';
 
-function LoginPage({ setLoginDisplay, setNewuserDisplay, setShowmainpage }) {
+function LoginPage({ setLoginDisplay, setNewuserDisplay, setShowmainpage, setAdmin, setAllUsers}) {
 
     const [errorMessage, setErrorMessage] = useState(false);
+    
     const [user, setUser] = useState({
         email: "",
-        password: ""
+        password: "",
     })
 
     const inputChange = (e) => {
@@ -21,6 +22,18 @@ function LoginPage({ setLoginDisplay, setNewuserDisplay, setShowmainpage }) {
                 setNewuserDisplay(false);
                 setShowmainpage(true);
                 setErrorMessage(false);
+                setAdmin(res.data.isadmin);
+                console.log(res.data.isadmin);
+                
+                if (res.data.isadmin === true){
+                    axios.get('api/users').then(res => {
+                        setAllUsers(res.data)
+                    }).catch (err => {
+                        console.log("error inside get all users" + err);
+                    })
+                }
+                
+            
             })
             .catch(err => {
                 setErrorMessage(true);

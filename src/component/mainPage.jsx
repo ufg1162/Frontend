@@ -4,24 +4,31 @@ import LogDay from "./logDay";
 import ViewData from "./viewD";
 import EditProfile from './EditProfile';
 import MenuBar from "./menubar";
+import Admin from "./admin";
 
-function MainPage({ setShowmainpage, setLoginDisplay }) {
+function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers, setAllUsers }) {
 
     const [EditprofileDisplay, setEditprofileDisplay] = useState(false);
     const [showLog, setShowLog] = useState(true);
     const [showEdit, setShowEdit] = useState(false);
     const [showData, setShowData] = useState(false);
+    const [showAdmin, setShowAdmin] = useState(false);
     const [user, setUser] = useState({name: '', email: '', address: [{one: '', two: ''}]});
+    
     
     return (
         <div id="MainPage">
+            {console.log(admin)}
             
             <MenuBar
                 setShowLog = {setShowLog}
                 setShowEdit = {setShowEdit}
                 setShowData = {setShowData}
                 setEditprofileDisplay = {setEditprofileDisplay}
+                setShowAdmin = {setShowAdmin}
                 user = {user}
+                admin = {admin}
+                
             />
 
             {EditprofileDisplay && 
@@ -36,6 +43,11 @@ function MainPage({ setShowmainpage, setLoginDisplay }) {
             {showLog && <LogDay/>}
             {showEdit && <EditQuestions/>}
             {showData && <ViewData/>}
+            {admin && showAdmin && 
+                <Admin
+                allusers = {allusers}
+                setAllUsers = {setAllUsers}
+                />}
         </div>
     )
 }

@@ -29,7 +29,8 @@ function EditQuestions() {
         setQList([question, ...qList]);
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (questions._id === undefined) {
             axios.post('/api/questions', qList);
         }
