@@ -28,6 +28,7 @@ function App() {
               if (result.data[0].isadmin === true) {
                 setAdmin(true);
               }
+              setUserImage(result.data[0].image);
             })
         }
       });
@@ -48,6 +49,7 @@ function App() {
         setShowmainpage = {setShowmainpage}
         setAdmin = {setAdmin}
         setAllUsers = {setAllUsers}
+        setUser = {setUser}
         setUserImage = {setUserImage}
       
       />}

@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import EditQuestions from "./editQ";
 import LogDay from "./logDay";
 import ViewData from "./viewD";
 import EditProfile from './EditProfile';
 import MenuBar from "./menubar";
 import Admin from "./admin";
+import axios from "axios";
 
 function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers, setAllUsers, userImage }) {
 
@@ -14,6 +15,7 @@ function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers,
     const [showData, setShowData] = useState(false);
     const [showAdmin, setShowAdmin] = useState(false);
     const [user, setUser] = useState({name: '', email: '', address: [{one: '', two: ''}]});
+
     
     
     return (
