@@ -67,7 +67,7 @@ function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, 
     }
 
     return (
-        <div id="Menu-container">
+        <div id="Menu-container"  data-testid="menubar-element">
             <span className="logo" style={{fontSize: '25px', paddingLeft: '5px'}}><b>Day Logger</b></span>
             <div className="menu-wrapper">
                 <span id="logDay" className="menu-choice" onClick={LogShown} style={{color: "#66bfbf", textDecoration: "underline"}}>Log Day</span>  

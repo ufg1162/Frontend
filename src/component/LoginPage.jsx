@@ -46,7 +46,7 @@ function LoginPage({ setLoginDisplay, setNewuserDisplay, setShowmainpage, setAdm
 
 
     return(
-        <div className='loginwindow'>
+        <div data-testid="login-element" className='loginwindow'>
             <div>
                 <h1 id='login_h1'>Day Logger</h1>
                 <h3 id='login_h3'>Keep track of your Life.</h3>
