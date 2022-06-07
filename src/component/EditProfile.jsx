@@ -2,20 +2,13 @@ import React, { Component, useEffect, useState } from 'react';
 import { uploadImageToCloudinaryAPIMethod } from "../api/client"
 import axios from 'axios';
 
-function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, user, setUser, userImage }) {
+function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, user, setUser }) {
 
     const defaultImage = "http://res.cloudinary.com/natialemu47/image/upload/v1652196653/dnt17uj4nl9ywfq648v8.jpg";
-    //const [user, setUser] = useState({name: '', email: '', address: [{one: '', two: ''}]});
-
-    useEffect(() => {
-        axios.get('/api/curruser')
-            .then(function (res) {
-                setUser(res.data[0]);
-            })
-    }, [])
+    const [currUser, setCurrUser] = useState(user);
 
     const handleDeleteImage = () => {
-        setUser({...user, image: ''});
+        setCurrUser({...currUser, image: ''});
     }
 
     const handleImageSelected = (event) => {
@@ -41,8 +34,8 @@ function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, 
                 console.dir(response);
                 console.log(response.url)
                 // Now the URL gets saved to the author
-                const updatedUser = {...user, image: response.url};
-                setUser(updatedUser);
+                const updatedUser = {...currUser, image: response.url};
+                setCurrUser(updatedUser);
                 
       
                 // Now we want to make sure this is updated on the server – either the
@@ -52,17 +45,21 @@ function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, 
     }
 
       const handleChange = (e) => {
-        const update = {...user, [e.target.name]: e.target.value};
-        setUser(update);
+        const update = {...currUser, [e.target.name]: e.target.value};
+        setCurrUser(update);
     }
 
     const handleAddress = (e) => {
-        const update = {...user, address: [{...user.address[0] , [e.target.name]: e.target.value}]}
-        setUser(update);
+        const update = {...currUser, address: [{...currUser.address[0] , [e.target.name]: e.target.value}]}
+        console.log(update);
+        setCurrUser(update);
     }
 
     const handleSave = () => {
-        axios.put('/api/users/' + user._id, user);
+        axios.put('/api/users/' + currUser._id, currUser)
+            .then(function (res) {
+                setUser(currUser);
+            })
     }
 
     const handlelogout = e => {
@@ -83,7 +80,7 @@ function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, 
             <div className='form-area'>
                 <h3>Profile photo</h3>
                 <div id="edit2">
-                    <label htmlFor='file-upload' className='custom-file-upload'><img className="profile-image" src={userImage || defaultImage} alt="Profile-image" /></label><input id="file-upload" type="file" onChange={handleImageSelected}></input>
+                    <label htmlFor='file-upload' className='custom-file-upload'><img className="profile-image" src={currUser.image || defaultImage} alt="Profile-image" /></label><input id="file-upload" type="file" onChange={handleImageSelected}></input>
                     
                     <span><button className="popup-button"><label htmlFor="file-upload" className="custom-file-upload">Choose new image </label><input id="file-upload" type="file" onChange={handleImageSelected}/></button></span>
                     <span><div className='underline' onClick={handleDeleteImage}>Remove image </div></span>
@@ -92,17 +89,17 @@ function EditProfile({ setEditprofileDisplay, setShowmainpage, setLoginDisplay, 
                 
             <div className='form-area'>
                 <label htmlFor="text"><h4>Name</h4></label>
-                <input type="text" className='editprofile_input' value={user.name} name="name" onChange={handleChange}/> 
+                <input type="text" className='editprofile_input' value={currUser.name} name="name" onChange={handleChange}/> 
 
             </div>
             <div className='form-area'>
                 <label htmlFor="email"><h4>Email</h4></label>
-                <input type="text" className='editprofile_input' value={user.email} name="email" onChange={handleChange}/> 
+                <input type="text" className='editprofile_input' value={currUser.email} name="email" onChange={handleChange}/> 
             </div>
             <div className='form-area'>
                 <label htmlFor="text"><h4>Address</h4></label>
-                <input type="text" className='editprofile_input' value={user.address[0] === undefined ? '': user.address[0].one || ''} name="one" onChange={handleAddress}/> 
-                <input type="text" className='editprofile_input' value={user.address[0] === undefined ? '': user.address[0].two || ''} name="two" onChange={handleAddress}/> 
+                <input type="text" className='editprofile_input' value={currUser.address[0] === undefined ? '': currUser.address[0].one || ''} name="one" onChange={handleAddress}/> 
+                <input type="text" className='editprofile_input' value={currUser.address[0] === undefined ? '': currUser.address[0].two || ''} name="two" onChange={handleAddress}/> 
             </div>
             
             <div className="clearfix">

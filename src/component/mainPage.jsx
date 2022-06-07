@@ -7,7 +7,7 @@ import MenuBar from "./menubar";
 import Admin from "./admin";
 import axios from "axios";
 
-function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers, setAllUsers, userImage }) {
+function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers, setAllUsers }) {
 
     const [EditprofileDisplay, setEditprofileDisplay] = useState(false);
     const [showLog, setShowLog] = useState(true);
@@ -15,6 +15,13 @@ function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers,
     const [showData, setShowData] = useState(false);
     const [showAdmin, setShowAdmin] = useState(false);
     const [user, setUser] = useState({name: '', email: '', address: [{one: '', two: ''}]});
+
+    useEffect(() => {
+        axios.get('/api/curruser')
+            .then(function (res) {
+                setUser(res.data[0])
+            })
+    }, [])
 
     
     
@@ -30,8 +37,6 @@ function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers,
                 setShowAdmin = {setShowAdmin}
                 user = {user}
                 admin = {admin}
-                userImage = {userImage}
-                
             />
 
             {EditprofileDisplay && 
@@ -41,7 +46,6 @@ function MainPage({ setShowmainpage, setLoginDisplay, admin, setAdmin, allusers,
                 setEditprofileDisplay = {setEditprofileDisplay}
                 user = {user}
                 setUser = {setUser}
-                userImage = {userImage}
             />}
 
             {showLog && <LogDay/>}

@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import axios from 'axios';
 
-function LoginPage({ setLoginDisplay, setNewuserDisplay, setShowmainpage, setAdmin, setAllUsers, setUserImage}) {
+function LoginPage({ setLoginDisplay, setNewuserDisplay, setShowmainpage, setAdmin, setAllUsers, setCurrUser}) {
 
     const [errorMessage, setErrorMessage] = useState(false);
     
@@ -23,7 +23,8 @@ function LoginPage({ setLoginDisplay, setNewuserDisplay, setShowmainpage, setAdm
                 setShowmainpage(true);
                 setErrorMessage(false);
                 setAdmin(res.data.isadmin);
-                setUserImage(res.data.image);
+                console.log(res.data);
+                setCurrUser(res.data);
                 console.log("-----------------");
                 console.log(res.data.image);
                 console.log("-----------------");

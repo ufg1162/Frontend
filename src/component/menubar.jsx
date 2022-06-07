@@ -1,7 +1,7 @@
 
 import {useEffect} from "react";
 
-function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, user, setShowAdmin, admin, userImage  }) {
+function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, user, setShowAdmin, admin }) {
 
     // highlight and underline persists unless clicking other buttons from menu bar
     const clicked = (name) => {
@@ -76,7 +76,7 @@ function MenuBar({ setShowLog, setShowEdit, setShowData, setEditprofileDisplay, 
                 {admin === true && <span id="AdminPage" className="menu-choice" onClick={ViewAdmin}>Admin Page</span>}
 
             </div>
-            <img className="menu-profile" src={userImage || "http://res.cloudinary.com/natialemu47/image/upload/v1652196653/dnt17uj4nl9ywfq648v8.jpg"} onClick={EditProfileShown} alt="profile-img"></img>
+            <img className="menu-profile" src={user.image || "http://res.cloudinary.com/natialemu47/image/upload/v1652196653/dnt17uj4nl9ywfq648v8.jpg"} onClick={EditProfileShown} alt="profile-img"></img>
         </div>
     )
 }
