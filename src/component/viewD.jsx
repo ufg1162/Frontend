@@ -52,43 +52,53 @@ function ViewData() {
     axios.get('/api/logs')
       .then(function (res){
         
-        console.log("res.data");
-        console.log(res.data);
-      
-        console.log("------------------------------------------");
+        // console.log("res.data");
+        // console.log(res.data);
+        //console.log("------------------------------------------");
 
         
         for (let i=0; i<res.data.length; i++){
               quest[i] = res.data[i].questions;
         }
-        console.log(quest);
-
+        //console.log(quest);
+        //console.log("------------------------------------------");
       
-        console.log("------------------------------------------");
+        
         quest.map((quest_day)=>{
           quest_day.map((questions_list)=>{
             
             let ind= new_list.findIndex((new_item)=> questions_list.question == new_item.que )
 
             if (ind==-1){
+              if(questions_list.type === "number"){
+                console.log(questions_list.type);
+                new_list.push({que:questions_list.question, type:questions_list.type, response:[{date:questions_list.date_inside, answer: parseInt(questions_list.answer)}]})
+                setFinalList(new_list);
+              }else{
+                //console.log(quest_day);
               new_list.push({que:questions_list.question, type:questions_list.type, response:[{date:questions_list.date_inside, answer:questions_list.answer}]})
               setFinalList(new_list);
+              }
             }
             else{
               
-              let updated_item= {...new_list[ind], response:[...new_list[ind].response ,{date:questions_list.date_inside, answer:questions_list.answer}]}
+              let updated_item= {}
+              if(questions_list.type === "number"){
+                updated_item = {...new_list[ind], response:[...new_list[ind].response ,{date:questions_list.date_inside, answer:parseInt(questions_list.answer)}]}
+                new_list[ind]=updated_item;
+                setFinalList(new_list);
+              }else{
+              updated_item = {...new_list[ind], response:[...new_list[ind].response ,{date:questions_list.date_inside, answer:questions_list.answer}]}
               new_list[ind]=updated_item;
               setFinalList(new_list);
-            
+              }
             }
 
           })
 
-      }
-      
-      )
+      })
     
-      console.log(new_list)
+      //console.log(new_list)
       
       })
       .catch((err)=> {
@@ -126,7 +136,7 @@ function ViewData() {
                         </div>
                         
                         <div style={{
-                          overflow: "hidden",
+                          overflow: "scroll",
                           marginTop: "20px",
                           width: "100%",
                           height: 300,
@@ -153,7 +163,7 @@ function ViewData() {
                       
                 case ("text"):
                   return(
-                    <div className="view_data_form">
+                    <div className="view_data_form" id = "view_text">
                       <div>
                           <b>{qu.que}</b> {" - "}
                           {Object.keys(qu.response).length} response(s) 
@@ -189,14 +199,14 @@ function ViewData() {
 
                   return (
                     
-                    <div className="view_data_form">
+                    <div className="view_data_form" >
                       <div>
                           <b>{qu.que}</b> {" - "}
                           {Object.keys(qu.response).length} response(s) 
                       </div>
                       <div
                             style={{
-                                overflow: "hidden",
+                                overflow: "scroll",
                                 marginTop: "20px",
                                 width: "100%",
                                 height: 300,
@@ -244,14 +254,14 @@ function ViewData() {
                   let choice_data = Object.entries(choice_ans).map(([key, value]) => ({choice:key, freq: value}))
                   return (
                     
-                    <div className="view_data_form">
+                    <div className="view_data_form" >
                       <div>
                           <b>{qu.que}</b> {" - "}
                           {Object.keys(qu.response).length} response(s) 
                       </div>
                       <div
                         style={{
-                          overflow: "hidden",
+                          overflow: "scroll",
                           marginTop: "20px",
                           width: "100%",
                           height: 300,
